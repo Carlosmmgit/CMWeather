@@ -1,0 +1,81 @@
+﻿<Window x:Class="CMWeather.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:CMWeather.ViewModels"
+        mc:Ignorable="d"
+        Title="CWeather" 
+        Height="250" 
+        Width="400">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Name:" 
+               VerticalAlignment="Center" 
+               Grid.Column="0" 
+               Grid.Row="0"/>
+        <TextBox Text="{Binding WeatherResponse.name}" 
+                Margin="5" 
+                Grid.Column="1"  
+                Grid.Row="0"/>
+
+        <Label Content="Humidity:" 
+               VerticalAlignment="Center" 
+               Grid.Column="0" 
+               Grid.Row="1"/>
+        <TextBox Text="{Binding WeatherResponse.main.humidity}"
+                Margin="5"
+                Grid.Column="1" 
+                Grid.Row="1"/>
+
+        <Label Content="Temperature:" 
+               VerticalAlignment="Center" 
+               Grid.Column="0" 
+               Grid.Row="2"/>
+        <TextBox Text="{Binding WeatherResponse.main.temp}"
+                Margin="5"
+                Grid.Column="1" 
+                Grid.Row="2"/>
+
+        <Label Content="Weather:" 
+               VerticalAlignment="Center" 
+               Grid.Column="0" 
+               Grid.Row="3"/>
+        <TextBox Text="{Binding WeatherResponse.weather[0].main}" 
+                 Margin="5"
+                 Grid.Column="1" 
+                 Grid.Row="3"/>
+
+        <Label Content="Description:" 
+               VerticalAlignment="Center" 
+               Grid.Column="0" 
+               Grid.Row="4"/>
+        <TextBox Text="{Binding WeatherResponse.weather[0].description}" 
+                 Margin="5"
+                 Grid.Column="1" 
+                 Grid.Row="4"/>
+
+        <Button Content="Update" 
+                Command="{Binding UpdateCommand}" 
+                Margin="20"
+                Grid.ColumnSpan="2" 
+                Grid.Column="0" 
+                Grid.Row="5"/>
+    </Grid>
+</Window>
+
